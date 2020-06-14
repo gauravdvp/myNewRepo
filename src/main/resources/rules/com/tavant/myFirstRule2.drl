@@ -1,0 +1,29 @@
+package com.tavant;
+import java.util.*;
+import droolsExperimental.*;
+
+rule "experiment1"
+salience 10
+no-loop
+when
+   Student($alist : address != null)
+   $a : Address(city in ("patna-1","patna-2")) from $alist
+then
+drools.halt();
+   insert($a);
+modify($a) {
+   setStreet("street-1")
+}
+retract($a);
+System.out.println("age is > than 20");
+end
+
+
+rule "experiment2"
+salience 1
+no-loop
+when
+   Student($alist : address != null)
+then
+	System.out.println("age is > than 20"+$alist);
+end

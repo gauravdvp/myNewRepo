@@ -1,0 +1,28 @@
+package com.tavant;
+import java.util.*;
+import droolsExperimental.*;
+function int add(int a,int b) {
+return a+b;
+};
+rule my_first_rule
+activation-group "hello there"
+when
+$t :Integer()  
+eval($t == 12)
+$r : Raugh($e:raugh.name == "kumar gaurav verma")
+$al : ArrayList()
+$aa : String(this.equalsIgnoreCase("kumar")==true) from $al
+then
+   System.out.println("Yes : "+$aa);
+end
+
+
+rule my_first_rule1 @Propagation(IMMEDIATE)
+
+enabled true
+when
+    $t : ArrayList() 
+    $n : ArrayList() from collect (String(this.length==3) from $t)
+then
+   System.out.println("No : "+drools.getRule().getName()+" "+drools.getRule().getEnabled());
+end
